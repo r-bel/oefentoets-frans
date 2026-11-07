@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Oefentoets Frans</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">FR</div>
+      <div>
+        <div class="title">Oefentoets Frans</div>
+        <div class="subtitle" id="courseTitle"></div>
+      </div>
+    </div>
+    <button id="stopBtn" class="small hidden">Stop toets</button>
+  </header>
+
+  <main>
+    <!-- 1. INSTELLINGEN -->
+    <section id="screen-setup" class="screen active">
+      <div class="card hero">
+        <span class="badge">✨ Oefen op jouw maat</span>
+        <h1>Maak je eigen oefentoets</h1>
+        <p class="lead">Kies wat je wil oefenen, in welke richting en hoe moeilijk. Op het einde zie je wat je al goed kent en wat je nog moet herhalen.</p>
+
+        <div class="section-label">1. Wat wil je oefenen?</div>
+        <div class="quick">
+          <button type="button" class="chipbtn" data-quick="all">Alles</button>
+          <button type="button" class="chipbtn" data-quick="vocab">📚 Enkel woordenschat</button>
+          <button type="button" class="chipbtn" data-quick="gram">🧩 Enkel grammatica</button>
+          <button type="button" class="chipbtn" data-quick="none">Niets</button>
+        </div>
+        <div id="unitTree" class="tree"></div>
+
+        <div class="section-label">2. Richting <span class="muted">(woordenschat)</span></div>
+        <div class="seg seg3">
+          <label><input type="radio" name="dir" value="nl-fr"><span>NL ➔ FR</span></label>
+          <label><input type="radio" name="dir" value="fr-nl"><span>FR ➔ NL</span></label>
+          <label><input type="radio" name="dir" value="both" checked><span>Beide</span></label>
+        </div>
+
+        <div class="section-label">3. Moeilijkheid</div>
+        <div class="seg seg3 tall">
+          <label><input type="radio" name="level" value="easy"><span><b>🙂 Makkelijk</b><small>alles meerkeuze</small></span></label>
+          <label><input type="radio" name="level" value="normal" checked><span><b>💪 Normaal</b><small>meerkeuze + typen, accentfout telt nog als goed</small></span></label>
+          <label><input type="radio" name="level" value="hard"><span><b>🔥 Moeilijk</b><small>alles typen, accent en lidwoord moeten juist zijn</small></span></label>
+        </div>
+
+        <div class="section-label">4. Aantal vragen</div>
+        <div class="seg seg4">
+          <label><input type="radio" name="count" value="10"><span>10 vragen</span></label>
+          <label><input type="radio" name="count" value="20" checked><span>20 vragen</span></label>
+          <label><input type="radio" name="count" value="30"><span>30 vragen</span></label>
+          <label><input type="radio" name="count" value="50"><span>50 vragen</span></label>
+        </div>
+
+        <button id="startBtn" class="primary big">Start de toets 🚀</button>
+        <div id="setupMsg" class="msg"></div>
+      </div>
+    </section>
+
+    <!-- 2. TOETS -->
+    <section id="screen-quiz" class="screen">
+      <div class="card status">
+        <div>
+          <div id="qCounter" class="counter"></div>
+          <div class="muted">Onderdeel: <b id="qTopic" class="white"></b></div>
+        </div>
+        <div class="progress"><div id="progressBar"></div></div>
+      </div>
+      <div class="card">
+        <div id="qInstruction" class="instruction"></div>
+        <div id="qPrompt" class="prompt"></div>
+        <div id="qAnswerArea"></div>
+        <div id="qFeedback" class="feedback"></div>
+        <button id="nextBtn" class="primary big">Controleer ✓</button>
+      </div>
+    </section>
+
+    <!-- 3. RESULTAAT -->
+    <section id="screen-result" class="screen">
+      <div class="card hero center">
+        <span class="badge" id="scoreBadge"></span>
+        <div id="scoreBox" class="score"></div>
+      </div>
+      <div class="card">
+        <h2>🔍 Wat zeggen je fouten?</h2>
+        <ul id="conclusions" class="conclusions"></ul>
+      </div>
+      <div class="card">
+        <h2>📊 Score per onderdeel</h2>
+        <div id="topicTable"></div>
+      </div>
+      <div class="card">
+        <h2>✏️ Overzicht van je fouten</h2>
+        <div id="mistakeList"></div>
+      </div>
+      <div class="actions">
+        <button id="retryMistakesBtn" class="primary">🔁 Oefen enkel je fouten opnieuw</button>
+        <button id="againBtn">Nieuwe toets, zelfde instellingen</button>
+        <button id="homeBtn" class="ghost">Terug naar instellingen</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div id="extraLinks" class="extra"></div>
+    <div class="muted" id="footerCourse"></div>
+  </footer>
+  <div id="toast" class="toast"></div>
+
+  <script src="js/config.js"></script>
+  <script src="data/frans-5-cahier-a.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

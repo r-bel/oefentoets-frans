@@ -1,0 +1,314 @@
+{
+  "cursus": "Frans 5de leerjaar - Deel A",
+  "bron": "Foto's 261107, pagina's 3-43",
+  "volledigheid": {
+    "aanwezig": "3, 4-43 (21 foto's: p.3 apart, daarna telkens een dubbele pagina)",
+    "ontbreekt": ["1", "2"],
+    "opmerking": "p.1-2 = start Mission 1 (Départ). Op p.3 staat 'Kijk nog eens terug naar de tip op p. 1'. p.43 is een lege notitiepagina."
+  },
+  "missions": [
+    {
+      "id": "M1",
+      "titel": "Tu es qui?",
+      "paginas": "1-13",
+      "woordenschat": [
+        { "fr": "un an", "nl": "een jaar", "soort": "nw", "geslacht": "m", "p": 3 },
+        { "fr": "être", "nl": "zijn", "soort": "ww", "p": 3 },
+        { "fr": "comment?", "nl": "hoe?", "soort": "ander", "p": 3 },
+        { "fr": "et", "nl": "en", "soort": "ander", "p": 3 },
+        { "fr": "non", "nl": "nee", "soort": "ander", "p": 3 },
+        { "fr": "oui", "nl": "ja", "soort": "ander", "p": 3 },
+        { "fr": "qui?", "nl": "wie?", "soort": "ander", "p": 3 },
+        { "fr": "de / d'", "nl": "van", "soort": "voorzetsel", "p": 3 },
+        { "fr": "de Bruxelles", "nl": "van Brussel", "soort": "voorzetsel", "p": 3 },
+        { "fr": "d'Anvers", "nl": "van Antwerpen", "soort": "voorzetsel", "p": 3 }
+      ],
+      "zinnen": [
+        { "fr": "Au revoir!", "nl": "Tot ziens!", "p": 3 },
+        { "fr": "Bonjour!", "nl": "Goedendag!", "p": 3 },
+        { "fr": "Comment tu t'appelles?", "nl": "Hoe heet jij?", "p": 3 },
+        { "fr": "Et toi?", "nl": "En jij?", "p": 3 },
+        { "fr": "J'ai 9 ans.", "nl": "Ik ben 9 jaar.", "p": 3 },
+        { "fr": "Je m'appelle Sami.", "nl": "Ik heet Sami.", "p": 3 },
+        { "fr": "Moi, j'ai 10 ans.", "nl": "Ik, ik ben 10 jaar.", "p": 3 },
+        { "fr": "Moi, je suis Milou.", "nl": "Ik, ik ben Milou.", "p": 3 },
+        { "fr": "Salut!", "nl": "Dag!", "p": 3 },
+        { "fr": "Tu as quel âge?", "nl": "Hoe oud ben jij?", "p": 3 },
+        { "fr": "Tu es qui?", "nl": "Wie ben jij?", "p": 3 }
+      ],
+      "getallen": [
+        { "n": 0, "fr": "zéro" }, { "n": 1, "fr": "un" }, { "n": 2, "fr": "deux" },
+        { "n": 3, "fr": "trois" }, { "n": 4, "fr": "quatre" }, { "n": 5, "fr": "cinq" },
+        { "n": 6, "fr": "six" }, { "n": 7, "fr": "sept" }, { "n": 8, "fr": "huit" },
+        { "n": 9, "fr": "neuf" }, { "n": 10, "fr": "dix" }, { "n": 11, "fr": "onze" },
+        { "n": 12, "fr": "douze" }
+      ],
+      "steden": [
+        { "nl": "Antwerpen", "fr": "Anvers" }, { "nl": "Brugge", "fr": "Bruges" },
+        { "nl": "Brussel", "fr": "Bruxelles" }, { "nl": "Gent", "fr": "Gand" },
+        { "nl": "Hasselt", "fr": "Hasselt" }, { "nl": "Leuven", "fr": "Louvain" },
+        { "nl": "Aarlen", "fr": "Arlon" }, { "nl": "Bergen", "fr": "Mons" },
+        { "nl": "Luik", "fr": "Liège" }, { "nl": "Namen", "fr": "Namur" },
+        { "nl": "Waver", "fr": "Wavre" }
+      ],
+      "transparante_woorden": ["auto", "bagage", "bureau", "cadeau", "croissant", "douche", "film", "limonade", "menu", "piano"],
+      "grammatica": [
+        {
+          "id": "pronoms-personnels",
+          "titel": "Persoonlijke voornaamwoorden",
+          "p": 6,
+          "tabel": [
+            { "fr": "je", "nl": "ik" }, { "fr": "tu", "nl": "jij" },
+            { "fr": "il", "nl": "hij" }, { "fr": "elle", "nl": "zij (enkelvoud)" },
+            { "fr": "nous", "nl": "wij" }, { "fr": "vous", "nl": "jullie" },
+            { "fr": "ils", "nl": "zij (meervoud, mannelijk of gemengd)" },
+            { "fr": "elles", "nl": "zij (meervoud, alleen vrouwelijk)" }
+          ],
+          "regel": "Een groep met minstens één jongen = ils; alleen meisjes = elles. 'X et moi' = nous; 'X et toi' = vous."
+        },
+        {
+          "id": "etre",
+          "titel": "Het werkwoord être (zijn)",
+          "p": 6,
+          "vervoeging": {
+            "je": "suis", "tu": "es", "il/elle": "est",
+            "nous": "sommes", "vous": "êtes", "ils/elles": "sont"
+          },
+          "voorbeelden": [
+            "Je suis Ahmed.", "Tu es Sylvie?", "Toon est de Bruges.", "Emma est d'Ostende.",
+            "Nous sommes de Boom.", "Vous êtes Tim et Soufiane?", "Sam et Phil sont d'Anvers.", "Bo et Ada sont de Louvain."
+          ]
+        },
+        {
+          "id": "de-d",
+          "titel": "de of d'",
+          "p": 9,
+          "regel": "De wordt d' voor een klinker: de Liège, d'Anvers, d'Arlon, d'Esneux."
+        }
+      ],
+      "uitspraak": {
+        "alfabet": "Letters die anders klinken dan in het Nederlands (onderstreept in p.10): E, G, I, J, Q, R, U, W, Y",
+        "p": 10
+      }
+    },
+    {
+      "id": "M2",
+      "titel": "Il y a quoi dans ta classe?",
+      "paginas": "14-25",
+      "woordenschat": [
+        { "fr": "un banc", "nl": "een bank", "soort": "nw", "geslacht": "m", "p": 15 },
+        { "fr": "un bureau", "nl": "een bureau", "soort": "nw", "geslacht": "m", "p": 15 },
+        { "fr": "un cahier", "nl": "een schrift", "soort": "nw", "geslacht": "m", "p": 15 },
+        { "fr": "un crayon", "nl": "een potlood", "soort": "nw", "geslacht": "m", "p": 15 },
+        { "fr": "un exercice", "nl": "een oefening", "soort": "nw", "geslacht": "m", "p": 15 },
+        { "fr": "un livre", "nl": "een boek", "soort": "nw", "geslacht": "m", "p": 15 },
+        { "fr": "un stylo", "nl": "een balpen", "soort": "nw", "geslacht": "m", "p": 15 },
+        { "fr": "un tableau", "nl": "een bord", "soort": "nw", "geslacht": "m", "p": 15 },
+        { "fr": "un texte", "nl": "een tekst", "soort": "nw", "geslacht": "m", "p": 15 },
+        { "fr": "un élève", "nl": "een leerling", "soort": "nw", "geslacht": "m", "p": 15 },
+        { "fr": "un prof", "nl": "een leraar", "soort": "nw", "geslacht": "m", "p": 15 },
+        { "fr": "un voisin", "nl": "een buur(man)", "soort": "nw", "geslacht": "m", "p": 15 },
+        { "fr": "une classe", "nl": "een klas", "soort": "nw", "geslacht": "v", "p": 15 },
+        { "fr": "une école", "nl": "een school", "soort": "nw", "geslacht": "v", "p": 15 },
+        { "fr": "une gomme", "nl": "een gom", "soort": "nw", "geslacht": "v", "p": 15 },
+        { "fr": "une feuille", "nl": "een blad", "soort": "nw", "geslacht": "v", "p": 15 },
+        { "fr": "une page", "nl": "een pagina", "soort": "nw", "geslacht": "v", "p": 15 },
+        { "fr": "une question", "nl": "een vraag", "soort": "nw", "geslacht": "v", "p": 15 },
+        { "fr": "une réponse", "nl": "een antwoord", "soort": "nw", "geslacht": "v", "p": 15 },
+        { "fr": "une élève", "nl": "een leerlinge", "soort": "nw", "geslacht": "v", "p": 15 },
+        { "fr": "une prof", "nl": "een lerares", "soort": "nw", "geslacht": "v", "p": 15 },
+        { "fr": "une voisine", "nl": "een buur(vrouw)", "soort": "nw", "geslacht": "v", "p": 15 },
+        { "fr": "avec", "nl": "met", "soort": "ander", "p": 15 },
+        { "fr": "quoi?", "nl": "wat?", "soort": "ander", "p": 15 },
+        { "fr": "trop", "nl": "te", "soort": "ander", "p": 15 },
+        { "fr": "vite", "nl": "snel", "soort": "ander", "p": 15 },
+        { "fr": "donner", "nl": "geven", "soort": "ww", "p": 14 }
+      ],
+      "zinnen": [
+        { "fr": "C'est un banc.", "nl": "Het is een bank.", "p": 15 },
+        { "fr": "Ce sont des gommes.", "nl": "Het zijn gommen.", "p": 15 },
+        { "fr": "il y a", "nl": "er is, er zijn", "p": 15 },
+        { "fr": "Je ne comprends pas.", "nl": "Ik begrijp het niet.", "p": 15 },
+        { "fr": "pardon", "nl": "sorry, excuseer", "p": 15 },
+        { "fr": "Pas trop vite!", "nl": "Niet te snel!", "p": 15 },
+        { "fr": "Prenez une feuille.", "nl": "Neem een blaadje.", "p": 15 },
+        { "fr": "s'il te plaît", "nl": "alsjeblieft", "p": 15 },
+        { "fr": "s'il vous plaît", "nl": "alstublieft", "p": 15 },
+        { "fr": "voici", "nl": "hier is, hier zijn", "p": 15 },
+        { "fr": "C'est qui?", "nl": "Wie is het?", "p": 16 },
+        { "fr": "C'est quoi?", "nl": "Wat is het?", "p": 16 }
+      ],
+      "extra_woordenschat": {
+        "opmerking": "Alleen in de leestekst 'La vie à l'école' (p.24), niet in het woordenschatkader",
+        "woorden": [
+          { "fr": "une trousse", "nl": "een pennenzak" },
+          { "fr": "une calculatrice", "nl": "een rekenmachine" },
+          { "fr": "un taille-crayon", "nl": "een slijper" },
+          { "fr": "un sac à dos", "nl": "een rugzak" },
+          { "fr": "un marqueur fluorescent", "nl": "een fluostift" },
+          { "fr": "une règle", "nl": "een lat" }
+        ]
+      },
+      "grammatica": [
+        {
+          "id": "vous",
+          "titel": "Vous = jullie / u",
+          "p": 18,
+          "regel": "tu = jij; vous = jullie, maar ook de beleefde vorm u (Vous êtes qui, Madame? = Wie bent u, mevrouw?)."
+        },
+        {
+          "id": "articles-indefinis",
+          "titel": "Onbepaalde lidwoorden un / une / des",
+          "p": 19,
+          "regel": "un = mannelijk enkelvoud, une = vrouwelijk enkelvoud, des = meervoud (m en v). Leer elk zelfstandig naamwoord met zijn lidwoord.",
+          "voorbeelden": ["un élève / une élève", "un cahier", "une gomme", "des élèves", "des cahiers", "des gommes"]
+        },
+        {
+          "id": "pluriel",
+          "titel": "Het meervoud",
+          "p": 20,
+          "regel": "Meervoud: des + naamwoord + s. De meervouds-s schrijf je wel, maar hoor je niet. Let op: des wordt niet vertaald (des classes = klassen).",
+          "voorbeelden": ["C'est un élève. → Ce sont des élèves.", "Il y a une question. → Il y a des questions.", "Voici une classe. → Voici des classes."]
+        },
+        {
+          "id": "cest-cesont",
+          "titel": "C'est / Ce sont, C'est qui? / C'est quoi?",
+          "p": 16,
+          "regel": "C'est + enkelvoud (het is), Ce sont + meervoud (het zijn). C'est qui? voor personen, C'est quoi? voor voorwerpen."
+        }
+      ]
+    },
+    {
+      "id": "M3",
+      "titel": "Tu fais quoi?",
+      "paginas": "26-37",
+      "woordenschat": [
+        { "fr": "un ami", "nl": "een vriend", "soort": "nw", "geslacht": "m", "p": 27 },
+        { "fr": "un cinéma", "nl": "een bioscoop", "soort": "nw", "geslacht": "m", "p": 27 },
+        { "fr": "un film", "nl": "een film", "soort": "nw", "geslacht": "m", "p": 27 },
+        { "fr": "un GSM", "nl": "een gsm", "soort": "nw", "geslacht": "m", "p": 27 },
+        { "fr": "un jour", "nl": "een dag", "soort": "nw", "geslacht": "m", "p": 27 },
+        { "fr": "un ordinateur", "nl": "een computer", "soort": "nw", "geslacht": "m", "p": 27 },
+        { "fr": "un portable", "nl": "een laptop", "soort": "nw", "geslacht": "m", "p": 27 },
+        { "fr": "un sport", "nl": "een sport", "soort": "nw", "geslacht": "m", "p": 27 },
+        { "fr": "un weekend", "nl": "een weekend", "soort": "nw", "geslacht": "m", "p": 27 },
+        { "fr": "une amie", "nl": "een vriendin", "soort": "nw", "geslacht": "v", "p": 27 },
+        { "fr": "une chanson", "nl": "een liedje", "soort": "nw", "geslacht": "v", "p": 27 },
+        { "fr": "la musique", "nl": "de muziek", "soort": "nw", "geslacht": "v", "p": 27 },
+        { "fr": "une radio", "nl": "een radio", "soort": "nw", "geslacht": "v", "p": 27 },
+        { "fr": "une semaine", "nl": "een week", "soort": "nw", "geslacht": "v", "p": 27 },
+        { "fr": "une télé(vision)", "nl": "een televisie", "soort": "nw", "geslacht": "v", "p": 27 },
+        { "fr": "aimer", "nl": "houden van, leuk vinden", "soort": "ww", "p": 27 },
+        { "fr": "chanter", "nl": "zingen", "soort": "ww", "p": 27 },
+        { "fr": "danser", "nl": "dansen", "soort": "ww", "p": 27 },
+        { "fr": "écouter", "nl": "luisteren (naar)", "soort": "ww", "p": 27 },
+        { "fr": "jouer", "nl": "spelen", "soort": "ww", "p": 27 },
+        { "fr": "regarder", "nl": "kijken (naar)", "soort": "ww", "p": 27 },
+        { "fr": "téléphoner (à)", "nl": "telefoneren (naar)", "soort": "ww", "p": 27 },
+        { "fr": "(le) lundi", "nl": "maandag", "soort": "dag", "p": 27 },
+        { "fr": "(le) mardi", "nl": "dinsdag", "soort": "dag", "p": 27 },
+        { "fr": "(le) mercredi", "nl": "woensdag", "soort": "dag", "p": 27 },
+        { "fr": "(le) jeudi", "nl": "donderdag", "soort": "dag", "p": 27 },
+        { "fr": "(le) vendredi", "nl": "vrijdag", "soort": "dag", "p": 27 },
+        { "fr": "(le) samedi", "nl": "zaterdag", "soort": "dag", "p": 27 },
+        { "fr": "(le) dimanche", "nl": "zondag", "soort": "dag", "p": 27 }
+      ],
+      "zinnen": [
+        { "fr": "J'aime danser.", "nl": "Ik hou van dansen / Ik dans graag.", "p": 27 },
+        { "fr": "Tu fais quoi?", "nl": "Wat doe je?", "p": 27 },
+        { "fr": "Tu aimes faire quoi?", "nl": "Wat doe je graag?", "p": 27 },
+        { "fr": "Il est interdit de/d' ...", "nl": "Het is verboden te ...", "p": 28 }
+      ],
+      "extra_woordenschat": {
+        "opmerking": "Uit de tekst 'Un carnet d'amitié' (p.26), niet in het woordenschatkader",
+        "woorden": [
+          { "fr": "jouer au basket", "nl": "basketbal spelen" },
+          { "fr": "jouer au football", "nl": "voetballen" },
+          { "fr": "jouer au tennis", "nl": "tennissen" },
+          { "fr": "chanter des chansons", "nl": "liedjes zingen" },
+          { "fr": "écouter la radio", "nl": "naar de radio luisteren" },
+          { "fr": "une tablette", "nl": "een tablet" }
+        ]
+      },
+      "grammatica": [
+        {
+          "id": "aimer-infinitif",
+          "titel": "J'aime + infinitief",
+          "p": 29,
+          "regel": "Om te zeggen wat je graag doet: j'aime + het hele werkwoord (infinitief). Bv. J'aime écouter des chansons."
+        },
+        {
+          "id": "articles-definis",
+          "titel": "Bepaalde lidwoorden le / la / l' / les",
+          "p": 31,
+          "regel": "le = mannelijk enkelvoud, la = vrouwelijk enkelvoud, les = meervoud. Le/la wordt l' voor een woord dat met een klinker begint.",
+          "voorbeelden": ["le cinéma", "la chanson", "l'ordinateur", "l'amie", "les cinémas", "les chansons", "les ordinateurs", "les amies"],
+          "onbepaald_vs_bepaald": "een = un/une/des; de/het = le/la/l'/les"
+        },
+        {
+          "id": "au-a-la",
+          "titel": "Samengetrokken lidwoord: au, à la, à l', aux",
+          "p": 32,
+          "tabel": [
+            { "van": "à + le", "naar": "au", "vb": "Les enfants sont au cinéma." },
+            { "van": "à + la", "naar": "à la", "vb": "J'écoute des chansons à la radio." },
+            { "van": "à + l'", "naar": "à l'", "vb": "Louise téléphone à l'ami de Noa." },
+            { "van": "à + les", "naar": "aux", "vb": "La prof montre l'exercice aux élèves." }
+          ]
+        },
+        {
+          "id": "aimer",
+          "titel": "Het werkwoord aimer (houden van)",
+          "p": 32,
+          "vervoeging": {
+            "j'": "aime", "tu": "aimes", "il/elle": "aime",
+            "nous": "aimons", "vous": "aimez", "ils/elles": "aiment"
+          },
+          "voorbeelden": ["J'aime téléphoner.", "Tu aimes chanter?", "Gabriel aime jouer.", "Nous aimons regarder la télé.", "Vous aimez le weekend!", "Rayan et Vic aiment danser."]
+        },
+        {
+          "id": "verbes-er",
+          "titel": "Regelmatige werkwoorden op -ER",
+          "p": 34,
+          "regel": "1) Vorm de stam: knip -ER weg. 2) Voeg de uitgang toe. Bij alle regelmatige -ER werkwoorden dezelfde uitgangen.",
+          "uitgangen": { "je": "-e", "tu": "-es", "il/elle": "-e", "nous": "-ons", "vous": "-ez", "ils/elles": "-ent" },
+          "oefenwerkwoorden": ["danser", "chanter", "écouter", "jouer", "regarder", "téléphoner", "aimer"],
+          "let_op": "je wordt j' voor een klinker: j'aime, j'écoute"
+        }
+      ]
+    },
+    {
+      "id": "DA",
+      "titel": "Destination A",
+      "paginas": "38-42",
+      "inhoud": "Faits divers (cultuur, niet toetsstof), chanson 'Bonjour! Salut!', Révision Missions 1-3.",
+      "faits_divers": {
+        "provincies": [
+          { "fr": "Anvers", "nl": "Antwerpen" }, { "fr": "Limbourg", "nl": "Limburg" },
+          { "fr": "Flandre occidentale", "nl": "West-Vlaanderen" }, { "fr": "Flandre orientale", "nl": "Oost-Vlaanderen" },
+          { "fr": "Brabant flamand", "nl": "Vlaams-Brabant" }, { "fr": "Hainaut", "nl": "Henegouwen" },
+          { "fr": "Namur", "nl": "Namen" }, { "fr": "Liège", "nl": "Luik" },
+          { "fr": "Luxembourg", "nl": "Luxemburg" }, { "fr": "Brabant wallon", "nl": "Waals-Brabant" }
+        ],
+        "steden": [
+          { "fr": "Courtrai", "nl": "Kortrijk" }, { "fr": "Ypres", "nl": "Ieper" },
+          { "fr": "Alost", "nl": "Aalst" }, { "fr": "Saint-Nicolas", "nl": "Sint-Niklaas" },
+          { "fr": "Coxyde", "nl": "Koksijde" }, { "fr": "La Panne", "nl": "De Panne" },
+          { "fr": "Nieuport", "nl": "Nieuwpoort" }, { "fr": "Tongres", "nl": "Tongeren" },
+          { "fr": "Saint-Trond", "nl": "Sint-Truiden" }
+        ]
+      },
+      "revisie_oefentypes": [
+        "dialoog aanvullen", "C'est .../Ce sont ... bij foto", "Il y en a combien? (getallen)",
+        "être invullen", "persoonlijk voornaamwoord kiezen", "enkelvoud ↔ meervoud",
+        "vertalen met woordenbank", "kalender: dag + werkwoordsvorm", "le/la/l'/les", "à la/à l'/au/aux"
+      ]
+    }
+  ],
+  "oefentypes_in_cursus": [
+    "vertalen NL→FR en FR→NL", "meerkeuze (juiste vorm onderstrepen)", "werkwoord vervoegen in tabel",
+    "invullen met werkwoordsvorm", "lidwoord kiezen (un/une/des, le/la/l'/les)", "enkelvoud → meervoud",
+    "zinnen vertalen met woordenbank", "dialoog in juiste volgorde zetten", "combineren (pronom ↔ vorm)",
+    "getallen/rekensommen in het Frans", "letters ordenen tot woord", "vrai ou faux bij tekst"
+  ]
+}
