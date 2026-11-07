@@ -206,6 +206,7 @@
       if (unit.id === "m1-getallen") {
         q.instruction = dir === "nl-fr" ? "Schrijf het getal in het Frans" : "Welk getal is dit?";
       }
+      q.hint = dir === "nl-fr" ? item.hint_nl : item.hint_fr;
       return { ...q, kind: "vocab", unitId: unit.id, direction: dir, isNoun, mode, page: item.p, rule: unit.rule, key: unit.id + ":" + item.fr + ":" + dir };
     }
 
@@ -338,9 +339,39 @@
     function genER(unit, level) { return conjQuestion(unit, level, pick(ER_VERBS.filter((v) => v !== "aimer"))); }
 
     // ---------- toets samenstellen ----------
+    // "Alle": elk woord/elke zin precies één keer + een vast aantal vragen per grammatica-onderdeel
+    const GRAM_PER_UNIT_ALL = 6;
+    function countAll(settings) {
+      const sel = units.filter((u) => settings.units.includes(u.id));
+      const mult = settings.dir === "both" && settings.bothDirs ? 2 : 1;
+      return sel.reduce((s, u) => s + (u.kind === "vocab" ? u.items.length * mult : GRAM_PER_UNIT_ALL), 0);
+    }
+    function makeAllQuiz(settings, sel) {
+      const qs = [];
+      for (const u of sel) {
+        if (u.kind === "vocab") {
+          for (const item of u.items) {
+            const dirs = settings.dir === "both" ? (settings.bothDirs ? ["nl-fr", "fr-nl"] : [Math.random() < 0.5 ? "nl-fr" : "fr-nl"]) : [settings.dir];
+            for (const dir of dirs) qs.push({ ...vocabQuestion(u, item, dir, settings.level), unitLabel: u.label, mission: u.mission });
+          }
+        } else {
+          const seen = new Set();
+          for (let i = 0, guard = 0; i < GRAM_PER_UNIT_ALL && guard < 200; guard++) {
+            const q = u.gen(u, settings.level);
+            if (seen.has(q.key)) continue;
+            seen.add(q.key); i++;
+            qs.push({ ...q, unitLabel: u.label, mission: u.mission });
+          }
+        }
+      }
+      qs.forEach((q) => { if (q.mode === "mc" && (!q.options || q.options.length < 2)) q.mode = "text"; });
+      return shuffle(qs);
+    }
+
     function makeQuiz(settings) {
       const sel = units.filter((u) => settings.units.includes(u.id));
       if (!sel.length) return [];
+      if (settings.count === "all") return makeAllQuiz(settings, sel);
       const questions = [];
       const seen = new Set();
       let guard = 0;
@@ -366,7 +397,7 @@
       return shuffle(questions);
     }
 
-    return { units, makeQuiz, check };
+    return { units, makeQuiz, check, countAll };
   }
 
   // ---------- foutanalyse ----------

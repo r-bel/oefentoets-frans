@@ -53,11 +53,16 @@
         </div>
 
         <div class="section-label">4. Aantal vragen</div>
-        <div class="seg seg4">
-          <label><input type="radio" name="count" value="10"><span>10 vragen</span></label>
-          <label><input type="radio" name="count" value="20" checked><span>20 vragen</span></label>
-          <label><input type="radio" name="count" value="30"><span>30 vragen</span></label>
-          <label><input type="radio" name="count" value="50"><span>50 vragen</span></label>
+        <div class="seg seg5">
+          <label><input type="radio" name="count" value="10"><span>10</span></label>
+          <label><input type="radio" name="count" value="20" checked><span>20</span></label>
+          <label><input type="radio" name="count" value="30"><span>30</span></label>
+          <label><input type="radio" name="count" value="50"><span>50</span></label>
+          <label><input type="radio" name="count" value="all"><span>Alle 🎯</span></label>
+        </div>
+        <div id="allInfo" class="allinfo hidden">
+          <div><b>Eindtoets-modus:</b> elk gekozen woord en elke zin komt precies één keer aan bod, plus 6 vragen per grammatica-onderdeel.</div>
+          <label id="bothDirsWrap" class="check"><input type="checkbox" id="bothDirs"> Elk woord in <b>beide</b> richtingen vragen (NL ➔ FR én FR ➔ NL)</label>
         </div>
 
         <button id="startBtn" class="primary big">Start de toets 🚀</button>
@@ -77,6 +82,7 @@
       <div class="card">
         <div id="qInstruction" class="instruction"></div>
         <div id="qPrompt" class="prompt"></div>
+        <div id="qHint" class="hint"></div>
         <div id="qAnswerArea"></div>
         <div id="qFeedback" class="feedback"></div>
         <button id="nextBtn" class="primary big">Controleer ✓</button>

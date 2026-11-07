@@ -22,25 +22,33 @@ window.COURSES.push({
      "nl": "een jaar",
      "soort": "nw",
      "geslacht": "m",
-     "p": 3
+     "p": 3,
+     "hint_nl": "zoals in: Ik ben 10 jaar.",
+     "hint_fr": "zoals in: J'ai 10 ans."
     },
     {
      "fr": "être",
      "nl": "zijn",
      "soort": "ww",
-     "p": 3
+     "p": 3,
+     "hint_nl": "het werkwoord: ik ben, jij bent, …",
+     "hint_fr": "zoals in: Je suis Milou."
     },
     {
      "fr": "comment?",
      "nl": "hoe?",
      "soort": "ander",
-     "p": 3
+     "p": 3,
+     "hint_nl": "vraagwoord, zoals in: Hoe heet jij?",
+     "hint_fr": "zoals in: Comment tu t'appelles?"
     },
     {
      "fr": "et",
      "nl": "en",
      "soort": "ander",
-     "p": 3
+     "p": 3,
+     "hint_nl": "zoals in: Sam en Lea",
+     "hint_fr": "zoals in: Sam et Léa"
     },
     {
      "fr": "non",
@@ -58,13 +66,17 @@ window.COURSES.push({
      "fr": "qui?",
      "nl": "wie?",
      "soort": "ander",
-     "p": 3
+     "p": 3,
+     "hint_nl": "vraagwoord, zoals in: Wie ben jij?",
+     "hint_fr": "zoals in: Tu es qui?"
     },
     {
      "fr": "de / d'",
      "nl": "van",
      "soort": "voorzetsel",
-     "p": 3
+     "p": 3,
+     "hint_nl": "zoals in: Ik ben van Brussel.",
+     "hint_fr": "zoals in: Je suis de Bruxelles."
     },
     {
      "fr": "de Bruxelles",
@@ -334,14 +346,18 @@ window.COURSES.push({
      "nl": "een bank",
      "soort": "nw",
      "geslacht": "m",
-     "p": 15
+     "p": 15,
+     "hint_nl": "in de klas, om op te zitten",
+     "hint_fr": "in de klas, om op te zitten"
     },
     {
      "fr": "un bureau",
      "nl": "een bureau",
      "soort": "nw",
      "geslacht": "m",
-     "p": 15
+     "p": 15,
+     "hint_nl": "de tafel van de juf of meester",
+     "hint_fr": "de tafel van de juf of meester"
     },
     {
      "fr": "un cahier",
@@ -383,7 +399,9 @@ window.COURSES.push({
      "nl": "een bord",
      "soort": "nw",
      "geslacht": "m",
-     "p": 15
+     "p": 15,
+     "hint_nl": "in de klas, om op te schrijven",
+     "hint_fr": "in de klas, om op te schrijven"
     },
     {
      "fr": "un texte",
@@ -411,7 +429,9 @@ window.COURSES.push({
      "nl": "een buur(man)",
      "soort": "nw",
      "geslacht": "m",
-     "p": 15
+     "p": 15,
+     "hint_nl": "hij zit naast je",
+     "hint_fr": "hij zit naast je"
     },
     {
      "fr": "une classe",
@@ -432,14 +452,18 @@ window.COURSES.push({
      "nl": "een gom",
      "soort": "nw",
      "geslacht": "v",
-     "p": 15
+     "p": 15,
+     "hint_nl": "om potlood uit te vegen",
+     "hint_fr": "om potlood uit te vegen"
     },
     {
      "fr": "une feuille",
      "nl": "een blad",
      "soort": "nw",
      "geslacht": "v",
-     "p": 15
+     "p": 15,
+     "hint_nl": "een blad papier",
+     "hint_fr": "zoals in: Prenez une feuille."
     },
     {
      "fr": "une page",
@@ -481,37 +505,49 @@ window.COURSES.push({
      "nl": "een buur(vrouw)",
      "soort": "nw",
      "geslacht": "v",
-     "p": 15
+     "p": 15,
+     "hint_nl": "zij zit naast je",
+     "hint_fr": "zij zit naast je"
     },
     {
      "fr": "avec",
      "nl": "met",
      "soort": "ander",
-     "p": 15
+     "p": 15,
+     "hint_nl": "zoals in: Ik dans met een vriend.",
+     "hint_fr": "zoals in: Je danse avec un ami."
     },
     {
      "fr": "quoi?",
      "nl": "wat?",
      "soort": "ander",
-     "p": 15
+     "p": 15,
+     "hint_nl": "vraagwoord, zoals in: Wat is het?",
+     "hint_fr": "zoals in: C'est quoi?"
     },
     {
      "fr": "trop",
      "nl": "te",
      "soort": "ander",
-     "p": 15
+     "p": 15,
+     "hint_nl": "zoals in: Niet te snel!",
+     "hint_fr": "zoals in: Pas trop vite!"
     },
     {
      "fr": "vite",
      "nl": "snel",
      "soort": "ander",
-     "p": 15
+     "p": 15,
+     "hint_nl": "zoals in: Niet te snel!",
+     "hint_fr": "zoals in: Pas trop vite!"
     },
     {
      "fr": "donner",
      "nl": "geven",
      "soort": "ww",
-     "p": 14
+     "p": 14,
+     "hint_nl": "zoals in: een boek geven",
+     "hint_fr": "zoals in: donner un livre"
     }
    ],
    "zinnen": [
@@ -528,7 +564,9 @@ window.COURSES.push({
     {
      "fr": "il y a",
      "nl": "er is, er zijn",
-     "p": 15
+     "p": 15,
+     "hint_nl": "zoals in: Er zijn zes banken.",
+     "hint_fr": "zoals in: Il y a six bancs."
     },
     {
      "fr": "Je ne comprends pas.",
@@ -538,7 +576,9 @@ window.COURSES.push({
     {
      "fr": "pardon",
      "nl": "sorry, excuseer",
-     "p": 15
+     "p": 15,
+     "hint_nl": "als je iets niet begrijpt of iemand stoort",
+     "hint_fr": "als je iets niet begrijpt of iemand stoort"
     },
     {
      "fr": "Pas trop vite!",
@@ -553,17 +593,23 @@ window.COURSES.push({
     {
      "fr": "s'il te plaît",
      "nl": "alsjeblieft",
-     "p": 15
+     "p": 15,
+     "hint_nl": "tegen een vriend",
+     "hint_fr": "tegen een vriend"
     },
     {
      "fr": "s'il vous plaît",
      "nl": "alstublieft",
-     "p": 15
+     "p": 15,
+     "hint_nl": "beleefd, tegen de juf of meester",
+     "hint_fr": "beleefd, tegen de juf of meester"
     },
     {
      "fr": "voici",
      "nl": "hier is, hier zijn",
-     "p": 15
+     "p": 15,
+     "hint_nl": "zoals in: Hier is een blaadje.",
+     "hint_fr": "zoals in: Voici une feuille."
     },
     {
      "fr": "C'est qui?",
@@ -683,7 +729,9 @@ window.COURSES.push({
      "nl": "een dag",
      "soort": "nw",
      "geslacht": "m",
-     "p": 27
+     "p": 27,
+     "hint_nl": "maandag is een …",
+     "hint_fr": "zoals in: lundi est un jour"
     },
     {
      "fr": "un ordinateur",
@@ -697,14 +745,18 @@ window.COURSES.push({
      "nl": "een laptop",
      "soort": "nw",
      "geslacht": "m",
-     "p": 27
+     "p": 27,
+     "hint_nl": "een draagbare computer",
+     "hint_fr": "in deze cursus: een computer"
     },
     {
      "fr": "un sport",
      "nl": "een sport",
      "soort": "nw",
      "geslacht": "m",
-     "p": 27
+     "p": 27,
+     "hint_nl": "zoals tennis of voetbal",
+     "hint_fr": "zoals tennis of voetbal"
     },
     {
      "fr": "un weekend",
@@ -746,7 +798,9 @@ window.COURSES.push({
      "nl": "een week",
      "soort": "nw",
      "geslacht": "v",
-     "p": 27
+     "p": 27,
+     "hint_nl": "zeven dagen",
+     "hint_fr": "sept jours"
     },
     {
      "fr": "une télé(vision)",
@@ -759,7 +813,9 @@ window.COURSES.push({
      "fr": "aimer",
      "nl": "houden van, leuk vinden",
      "soort": "ww",
-     "p": 27
+     "p": 27,
+     "hint_nl": "zoals in: Ik hou van dansen.",
+     "hint_fr": "zoals in: J'aime danser."
     },
     {
      "fr": "chanter",
@@ -777,25 +833,33 @@ window.COURSES.push({
      "fr": "écouter",
      "nl": "luisteren (naar)",
      "soort": "ww",
-     "p": 27
+     "p": 27,
+     "hint_nl": "zoals in: naar muziek luisteren",
+     "hint_fr": "zoals in: écouter la musique"
     },
     {
      "fr": "jouer",
      "nl": "spelen",
      "soort": "ww",
-     "p": 27
+     "p": 27,
+     "hint_nl": "zoals in: voetbal spelen",
+     "hint_fr": "zoals in: jouer au football"
     },
     {
      "fr": "regarder",
      "nl": "kijken (naar)",
      "soort": "ww",
-     "p": 27
+     "p": 27,
+     "hint_nl": "zoals in: naar tv kijken",
+     "hint_fr": "zoals in: regarder la télé"
     },
     {
      "fr": "téléphoner (à)",
      "nl": "telefoneren (naar)",
      "soort": "ww",
-     "p": 27
+     "p": 27,
+     "hint_nl": "zoals in: naar een vriendin telefoneren",
+     "hint_fr": "zoals in: téléphoner à une amie"
     },
     {
      "fr": "(le) lundi",

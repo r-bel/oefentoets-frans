@@ -45,7 +45,12 @@
       cb.checked = n === units.length; cb.indeterminate = n > 0 && n < units.length;
     });
     const n = $$(".unit-cb:checked").length;
-    $("#setupMsg").textContent = n ? `${n} onderdelen gekozen` : "Kies minstens één onderdeel";
+    const s = readSettings();
+    $("#allInfo").classList.toggle("hidden", s.count !== "all");
+    $("#bothDirsWrap").classList.toggle("hidden", s.dir !== "both");
+    $("#setupMsg").textContent = !n ? "Kies minstens één onderdeel"
+      : s.count === "all" ? `${n} ${n === 1 ? "onderdeel" : "onderdelen"} gekozen · ${engine.countAll(s)} vragen`
+      : `${n} ${n === 1 ? "onderdeel" : "onderdelen"} gekozen · ${s.count} vragen`;
   }
   $$("[data-quick]").forEach((b) => b.addEventListener("click", () => {
     const q = b.dataset.quick;
@@ -61,7 +66,8 @@
       units: $$(".unit-cb:checked").map((c) => c.value),
       dir: $('input[name="dir"]:checked').value,
       level: $('input[name="level"]:checked').value,
-      count: +$('input[name="count"]:checked').value,
+      count: (v => v === "all" ? "all" : +v)($('input[name="count"]:checked').value),
+      bothDirs: $("#bothDirs").checked,
     };
   }
   function saveSettings(s) { try { localStorage.setItem(STORE_KEY, JSON.stringify(s)); } catch (e) {} }
@@ -71,7 +77,7 @@
       if (!s) return;
       $$(".unit-cb").forEach((c) => (c.checked = s.units.includes(c.value)));
       const set = (n, v) => { const el = $(`input[name="${n}"][value="${v}"]`); if (el) el.checked = true; };
-      set("dir", s.dir); set("level", s.level); set("count", s.count);
+      set("dir", s.dir); set("level", s.level); set("count", s.count); $("#bothDirs").checked = !!s.bothDirs;
     } catch (e) {}
   }
 
@@ -97,6 +103,7 @@
     $("#qTopic").textContent = q.unitLabel;
     $("#qInstruction").textContent = q.instruction;
     $("#qPrompt").textContent = q.prompt;
+    $("#qHint").textContent = q.hint || "";
     $("#qFeedback").innerHTML = ""; $("#qFeedback").className = "feedback";
     $("#nextBtn").textContent = "Controleer ✓";
     const area = $("#qAnswerArea");
@@ -213,5 +220,6 @@
   const cb = $("#coffeeBtn");
   if (cb) cb.addEventListener("click", () => toast("Bedankt! ☕ De koffiepagina komt binnenkort online."));
 
+  $$('input[type="radio"], #bothDirs').forEach((el) => el.addEventListener("change", syncMissionBoxes));
   renderTree(); loadSettings(); syncMissionBoxes();
 })();

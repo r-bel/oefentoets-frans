@@ -72,8 +72,8 @@ input[type="checkbox"]:indeterminate::after { content: "–"; font-size: 11px; c
 
 /* gesegmenteerde keuzes */
 .seg { display: grid; gap: 10px; }
-.seg3 { grid-template-columns: repeat(3, 1fr); } .seg4 { grid-template-columns: repeat(4, 1fr); }
-@media (max-width: 640px) { .seg3.tall { grid-template-columns: 1fr; } .seg4 { grid-template-columns: repeat(2, 1fr); } }
+.seg3 { grid-template-columns: repeat(3, 1fr); } .seg4 { grid-template-columns: repeat(4, 1fr); } .seg5 { grid-template-columns: repeat(5, 1fr); }
+@media (max-width: 640px) { .seg3.tall { grid-template-columns: 1fr; } .seg4 { grid-template-columns: repeat(2, 1fr); } .seg5 { grid-template-columns: repeat(3, 1fr); } }
 .seg input { position: absolute; opacity: 0; pointer-events: none; }
 .seg span { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 100%; padding: 11px 10px; border-radius: 12px; background: #273449; border: 1px solid var(--line); font-weight: 700; cursor: pointer; transition: all .15s; }
 .seg span small { font-weight: 500; color: var(--muted); font-size: .76rem; margin-top: 2px; }
@@ -81,6 +81,11 @@ input[type="checkbox"]:indeterminate::after { content: "–"; font-size: 11px; c
 .seg input:checked + span { background: var(--rose); border-color: var(--rose); box-shadow: 0 8px 20px -8px rgba(225, 29, 72, .7); }
 .seg input:checked + span small { color: #ffe4e6; }
 .seg input:focus-visible + span { outline: 2px solid #a5b4fc; outline-offset: 2px; }
+.allinfo { margin-top: 12px; padding: 12px 14px; border-radius: 12px; background: var(--indigo-soft); border: 1px solid rgba(99, 102, 241, .35); font-size: .88rem; color: #e0e7ff; display: grid; gap: 8px; }
+.check { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.hint { margin: -6px 0 16px; padding: 8px 12px; border-radius: 10px; background: rgba(99, 102, 241, .12); color: #c7d2fe; font-size: .9rem; }
+.hint:empty { display: none; }
+.hint::before { content: "💡 "; }
 .msg { text-align: center; color: var(--muted); margin-top: 10px; font-size: .85rem; }
 
 /* toets */

@@ -23,6 +23,9 @@ Na een wijziging in het `.json`-bestand moet het `.js`-bestand opnieuw gegeneree
 - **Selectie**: per Mission en per onderdeel (woordenschat en grammatica apart), met snelkeuze
   *Alles / Enkel woordenschat / Enkel grammatica*.
 - **Richting**: NL→FR, FR→NL of beide (voor woordenschat).
+- **Aantal vragen**: 10/20/30/50 of **Alle** (eindtoets: elk woord en elke zin precies één keer, plus 6 vragen per
+  grammatica-onderdeel; optioneel elk woord in beide richtingen).
+- **Context-hints** (💡) bij dubbelzinnige woorden, bv. *te* → "zoals in: Niet te snel!" (velden `hint_nl`/`hint_fr` in de leerstof).
 - **Moeilijkheid**: makkelijk (meerkeuze), normaal (mix; accentfout telt als goed maar wordt gemeld),
   moeilijk (alles typen; accent en lidwoord moeten juist zijn).
 - **Vraagtypes**: vertalen, getallen en rekenen, voornaamwoord kiezen, être/aimer/-ER vervoegen, de/d',
