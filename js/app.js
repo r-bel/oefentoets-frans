@@ -86,11 +86,11 @@
 
   function show(id) { $$(".screen").forEach((s) => s.classList.toggle("active", s.id === id)); $("#stopBtn").classList.toggle("hidden", id !== "screen-quiz"); window.scrollTo(0, 0); }
 
-  function start(settings, questions) {
+  function start(settings, questions, isRetry) {
     questions = questions || engine.makeQuiz(settings);
     if (!questions.length) { $("#setupMsg").textContent = "Kies minstens één onderdeel"; return; }
     saveSettings(settings);
-    state = { settings, questions, i: 0, results: [], answered: false, choice: null };
+    state = { settings, questions, i: 0, results: [], answered: false, choice: null, isRetry: !!isRetry };
     show("screen-quiz");
     renderQuestion();
   }
@@ -181,6 +181,7 @@
         const p = Math.round((u.ok / u.n) * 100);
         return `<tr><td>${esc(u.label)} <small>${u.mission} · p.${u.page}</small></td><td>${u.ok}/${u.n}</td><td><div class="bar"><div class="${p >= 80 ? "ok" : p >= 60 ? "warn" : "bad"}" style="width:${p}%"></div></div></td></tr>`;
       }).join("") + `</tbody></table>`;
+    renderFinal(a);
     $("#mistakeList").innerHTML = a.mistakes.length ? a.mistakes.map((r) => `
       <div class="mistake ${r.points ? "warn" : "bad"}">
         <div class="mq"><small>${esc(r.q.unitLabel)} · p.${r.q.page}</small><br>${esc(r.q.instruction)}: <b>${esc(r.q.prompt)}</b></div>
@@ -188,6 +189,22 @@
       </div>`).join("") : "<p>Geen fouten!</p>";
     $("#retryMistakesBtn").style.display = a.mistakes.length ? "" : "none";
     show("screen-result");
+  }
+
+  // Eindtoets-oordeel per onderdeel (alleen bij "Alle", volledig afgewerkt, niet bij herhaling van fouten)
+  function renderFinal(a) {
+    const full = state.settings.count === "all" && !state.isRetry && state.results.length === state.questions.length;
+    $("#finalCard").classList.toggle("hidden", !full);
+    if (!full) return;
+    const lvl = { easy: "makkelijk (meerkeuze)", normal: "normaal", hard: "moeilijk (alles typen, accenten en lidwoorden streng)" }[state.settings.level];
+    const units = Object.values(a.byUnit).sort((x, y) => (x.mission + x.label).localeCompare(y.mission + y.label));
+    const verdict = (u) => { const p = u.ok / u.n; return p === 1 ? ["✅", "Volledig gekend", "ok"] : p >= 0.8 ? ["🟡", "Bijna gekend", "warn"] : ["❌", "Nog niet gekend", "bad"]; };
+    const nFull = units.filter((u) => u.ok === u.n).length;
+    $("#finalIntro").innerHTML = `Alle leerstof van de ${units.length} gekozen onderdelen werd bevraagd (${a.total} vragen, niveau ${lvl}). <b>${nFull} van de ${units.length}</b> onderdelen zijn volledig gekend.` +
+      (state.settings.level !== "hard" ? " Tip: een eindtoets op niveau <i>moeilijk</i> geeft de strengste controle." : "");
+    $("#finalTable").innerHTML = `<table><thead><tr><th>Onderdeel</th><th>Score</th><th>Oordeel</th></tr></thead><tbody>` +
+      units.map((u) => { const [ic, txt, cls] = verdict(u); return `<tr><td>${esc(u.label)} <small>${u.mission} · p.${u.page}</small></td><td>${Math.round(u.ok)}/${u.n}</td><td class="verdict ${cls}">${ic} ${txt}</td></tr>`; }).join("") +
+      `</tbody></table>`;
   }
 
   // ---------- knoppen ----------
@@ -198,7 +215,7 @@
   $("#homeBtn").addEventListener("click", () => show("screen-setup"));
   $("#retryMistakesBtn").addEventListener("click", () => {
     const qs = state.analysis.mistakes.map((r) => ({ ...r.q }));
-    start(state.settings, qs.sort(() => Math.random() - 0.5));
+    start(state.settings, qs.sort(() => Math.random() - 0.5), true);
   });
   document.addEventListener("keydown", (e) => {
     if (!$("#screen-quiz").classList.contains("active")) return;

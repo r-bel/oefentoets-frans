@@ -137,6 +137,8 @@ td:last-child { width: 30%; }
 .given { text-decoration: line-through; color: #fb7185; }
 .mistake.warn .given { text-decoration: none; color: var(--warn); }
 .tag { font-size: .7rem; padding: 2px 8px; border-radius: 99px; background: var(--indigo-soft); color: #c7d2fe; margin-left: 4px; font-weight: 700; }
+.verdict { white-space: nowrap; font-weight: 700; width: auto !important; }
+.verdict.ok { color: #4ade80; } .verdict.warn { color: #fbbf24; } .verdict.bad { color: #fb7185; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 4px; }
 
 /* footer + koffie */

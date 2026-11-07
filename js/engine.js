@@ -214,27 +214,30 @@
       return { kind: "gram", unitId: unit.id, page: o.page || unit.page, rule: unit.rule, direction: null, isNoun: false, key: unit.id + ":" + o.prompt, ...o };
     }
 
-    function genPronoms(unit, level) {
-      if (Math.random() < 0.3) {
-        const p = pick(PRONS);
-        const mode = mcOrText(level);
-        return gq(unit, { instruction: "Welk persoonlijk voornaamwoord is dit in het Frans?", prompt: PRON_NL[p], accepted: [p], answerShown: p, mode, options: shuffle([p, ...shuffle(PRONS.filter((x) => x !== p)).slice(0, 3)]) });
+    // Elke generator krijgt optioneel een "case" c: dan wordt precies dat geval gevraagd (eindtoets-modus).
+    function genPronoms(unit, level, c) {
+      if (c ? c.pron : Math.random() < 0.3) {
+        const p = c ? c.pron : pick(PRONS);
+        return gq(unit, { instruction: "Welk persoonlijk voornaamwoord is dit in het Frans?", prompt: PRON_NL[p], accepted: [p], answerShown: p, mode: mcOrText(level), options: shuffle([p, ...shuffle(PRONS.filter((x) => x !== p)).slice(0, 3)]) });
       }
-      const s = pick(subjectPool());
+      const pool = subjectPool();
+      const s = c ? pool[c.subj] : pick(pool);
       return gq(unit, { instruction: "Welk voornaamwoord past?", prompt: s.s + " → ?", accepted: [s.p], answerShown: s.p, mode: mcOrText(level, true), options: ["il", "elle", "ils", "elles", "nous", "vous"] });
     }
 
-    function genEtre(unit, level) {
+    function genEtre(unit, level, c) {
       const ctx = pick(["de Bruxelles", "d'Anvers", "de Namur", "de Gand", "d'Arlon", "de Liège", "d'Ostende", "de Bruges"]);
       let subj, p;
-      if (Math.random() < 0.5) { p = pick(PRONS); subj = p; } else { const s = pick(subjectPool()); subj = s.s; p = s.p; }
+      if (c) { p = c.p; subj = p; }
+      else if (Math.random() < 0.5) { p = pick(PRONS); subj = p; } else { const s = pick(subjectPool()); subj = s.s; p = s.p; }
       const form = etreForm(p);
       const display = subj.charAt(0).toUpperCase() + subj.slice(1);
       return gq(unit, { instruction: "Vul de juiste vorm van être in", prompt: `${display} ___ ${ctx}.`, accepted: [form], answerShown: form, mode: mcOrText(level), options: ["suis", "es", "est", "sommes", "êtes", "sont"], verbForm: true });
     }
 
-    function genDe(unit, level) {
-      const city = pick(M.M1.steden.map((s) => s.fr).concat(["Ostende", "Esneux", "Ath", "Ottignies", "Pepinster", "Durbuy", "Charleroi", "Avignon"]));
+    const DE_CITIES = M.M1.steden.map((s) => s.fr).concat(["Ostende", "Esneux", "Ath", "Ottignies", "Pepinster", "Durbuy", "Charleroi", "Avignon"]);
+    function genDe(unit, level, c) {
+      const city = c ? c.city : pick(DE_CITIES);
       const ans = isVowelStart(city) ? "d'" : "de";
       return gq(unit, { instruction: "de of d'?", prompt: `Je suis ___ ${city}.`, accepted: ans === "d'" ? ["d'", "d"] : ["de"], answerShown: ans, mode: "mc", options: ["de", "d'"] });
     }
@@ -248,30 +251,31 @@
       return gq(unit, { instruction: "Reken uit en schrijf het resultaat in het Frans", prompt: `${G[x].fr} ${op} ${G[y].fr} =`, accepted: [ans], answerShown: ans, mode: mcOrText(level), options: mcOptions(ans, G.map((g) => g.fr)) });
     }
 
-    function genVous(unit, level) {
-      const T = [
-        { p: "Je spreekt je vriend aan: \"Wie ben jij?\"", a: "Tu es qui?", o: ["Tu es qui?", "Vous êtes qui?"] },
-        { p: "Je spreekt een onbekende mevrouw aan: \"Wie bent u?\"", a: "Vous êtes qui?", o: ["Tu es qui?", "Vous êtes qui?"] },
-        { p: "Je spreekt twee kinderen aan: \"Zijn jullie van Luik?\"", a: "Vous êtes de Liège?", o: ["Tu es de Liège?", "Vous êtes de Liège?"] },
-        { p: "Je vraagt de juf iets: \"Wat is het, alstublieft?\"", a: "C'est quoi, s'il vous plaît?", o: ["C'est quoi, s'il te plaît?", "C'est quoi, s'il vous plaît?"] },
-        { p: "Je vraagt je buur iets: \"Wat is het, alsjeblieft?\"", a: "C'est quoi, s'il te plaît?", o: ["C'est quoi, s'il te plaît?", "C'est quoi, s'il vous plaît?"] },
-        { p: "Hoe zeg je \"jullie\" in het Frans?", a: "vous", o: ["tu", "vous", "nous"] },
-        { p: "Hoe zeg je de beleefde vorm \"u\" in het Frans?", a: "vous", o: ["tu", "vous", "nous"] },
-      ];
-      const t = pick(T);
+    const VOUS_T = [
+      { p: "Je spreekt je vriend aan: \"Wie ben jij?\"", a: "Tu es qui?", o: ["Tu es qui?", "Vous êtes qui?"] },
+      { p: "Je spreekt een onbekende mevrouw aan: \"Wie bent u?\"", a: "Vous êtes qui?", o: ["Tu es qui?", "Vous êtes qui?"] },
+      { p: "Je spreekt twee kinderen aan: \"Zijn jullie van Luik?\"", a: "Vous êtes de Liège?", o: ["Tu es de Liège?", "Vous êtes de Liège?"] },
+      { p: "Je vraagt de juf iets: \"Wat is het, alstublieft?\"", a: "C'est quoi, s'il vous plaît?", o: ["C'est quoi, s'il te plaît?", "C'est quoi, s'il vous plaît?"] },
+      { p: "Je vraagt je buur iets: \"Wat is het, alsjeblieft?\"", a: "C'est quoi, s'il te plaît?", o: ["C'est quoi, s'il te plaît?", "C'est quoi, s'il vous plaît?"] },
+      { p: "Hoe zeg je \"jullie\" in het Frans?", a: "vous", o: ["tu", "vous", "nous"] },
+      { p: "Hoe zeg je de beleefde vorm \"u\" in het Frans?", a: "vous", o: ["tu", "vous", "nous"] },
+    ];
+    function genVous(unit, level, c) {
+      const t = c ? VOUS_T[c.i] : pick(VOUS_T);
       return gq(unit, { instruction: "tu of vous? Kies de juiste vraag", prompt: t.p, accepted: [t.a], answerShown: t.a, mode: "mc", options: shuffle(t.o) });
     }
 
-    function genIndef(unit, level) {
-      const pl = Math.random() < 0.3;
-      const n = pick(pl ? allNouns : genderNouns);
+    function genIndef(unit, level, c) {
+      const pl = c ? !!c.pl : Math.random() < 0.3;
+      const n = c && c.n ? c.n : pick(pl ? allNouns : genderNouns);
       const ans = pl ? "des" : n.g === "m" ? "un" : "une";
       const word = pl ? plural(n.noun) : n.noun;
       return gq(unit, { instruction: "Vul het onbepaald lidwoord in: un, une of des", prompt: `___ ${word}`, accepted: [ans], answerShown: `${ans} ${word}`, mode: mcOrText(level, true), options: ["un", "une", "des"], page: n.p });
     }
 
-    function genPluriel(unit, level) {
-      const n = pick(allNouns.filter((x) => !/télé/.test(x.noun)));
+    const PLURAL_NOUNS = allNouns.filter((x) => !/télé/.test(x.noun));
+    function genPluriel(unit, level, c) {
+      const n = c ? c.n : pick(PLURAL_NOUNS);
       const tpl = pick([["", ""], ["C'est ", "Ce sont "], ["Il y a ", "Il y a "], ["Voici ", "Voici "]]);
       const sing = `${tpl[0]}${n.art} ${n.noun}`.trim();
       const pl = `${tpl[1]}des ${plural(n.noun)}`;
@@ -279,54 +283,69 @@
       return gq(unit, { instruction: "Zet in het meervoud", prompt: sing + (tpl[0] ? "." : ""), accepted: [pl], answerShown: pl, mode: mcOrText(level), options: shuffle(uniq([pl, ...wrongs])) });
     }
 
-    function genCest(unit, level) {
-      if (Math.random() < 0.3) {
-        const person = Math.random() < 0.5;
+    function genCest(unit, level, c) {
+      const t = c ? c.t : Math.random() < 0.3 ? pick(["qui", "quoi"]) : pick(["cest", "cesont"]);
+      if (t === "qui" || t === "quoi") {
+        const person = t === "qui";
         const n = pick(allNouns.filter((x) => (/élève|prof|voisin|ami/.test(x.noun)) === person));
         const ans = person ? "C'est qui?" : "C'est quoi?";
         return gq(unit, { instruction: "Welke vraag hoort bij het antwoord?", prompt: `▸ C'est ${n.full}.`, accepted: [ans], answerShown: ans, mode: "mc", options: ["C'est qui?", "C'est quoi?"] });
       }
       const n = pick(allNouns);
-      const pl = Math.random() < 0.5;
+      const pl = t === "cesont";
       const ans = pl ? "Ce sont" : "C'est";
       const rest = pl ? `des ${plural(n.noun)}` : n.full;
       return gq(unit, { instruction: "C'est of Ce sont?", prompt: `___ ${rest}.`, accepted: [ans], answerShown: `${ans} ${rest}.`, mode: mcOrText(level, true), options: ["C'est", "Ce sont"] });
     }
 
-    function genDef(unit, level) {
-      const pl = Math.random() < 0.3;
-      const n = pick(pl ? allNouns : allNouns.filter((x) => !AMBIG.has(x.noun) || isVowelStart(x.noun)));
-      let ans = pl ? "les" : isVowelStart(n.noun) ? "l'" : n.g === "m" ? "le" : "la";
+    // kandidaten per bepaald lidwoord (zonder dubbelzinnige un/une élève/prof in het enkelvoud)
+    const DEF_POOL = {
+      le: genderNouns.filter((n) => n.g === "m" && !isVowelStart(n.noun)),
+      la: genderNouns.filter((n) => n.g === "v" && !isVowelStart(n.noun)),
+      "l'": allNouns.filter((n) => isVowelStart(n.noun)),
+      les: allNouns,
+    };
+    function genDef(unit, level, c) {
+      const ans = c ? c.art : (() => { const pl = Math.random() < 0.3; if (pl) return "les"; return pick(["le", "la", "l'"]); })();
+      const n = pick(DEF_POOL[ans]);
+      const pl = ans === "les";
       const word = pl ? plural(n.noun) : n.noun;
-      const prompt = Math.random() < 0.4 && !pl ? `${n.full} → ___ ${word}` : `___ ${word}`;
+      const prompt = Math.random() < 0.4 && !pl && !AMBIG.has(n.noun) ? `${n.full} → ___ ${word}` : `___ ${word}`;
       return gq(unit, { instruction: "Vul het bepaald lidwoord in: le, la, l' of les", prompt, accepted: ans === "l'" ? ["l'", "l"] : [ans], answerShown: (ans === "l'" ? "l'" : ans + " ") + word, mode: mcOrText(level, true), options: ["le", "la", "l'", "les"] });
     }
 
-    function genAu(unit, level) {
-      const people = allNouns.filter((x) => /élève|prof|voisin|ami/.test(x.noun));
-      const things = allNouns.filter((x) => /cinéma|école|radio|ordinateur|télé|tableau|page/.test(x.noun));
-      const usePeople = Math.random() < 0.5;
-      const n = pick(usePeople ? people : things);
-      const pl = usePeople && Math.random() < 0.35;
-      let ans = pl ? "aux" : isVowelStart(n.noun) ? "à l'" : n.g === "m" ? "au" : "à la";
+    const isPerson = (n) => /élève|prof|voisin|ami/.test(n.noun);
+    const isThing = (n) => /cinéma|école|radio|ordinateur|télé|tableau|page/.test(n.noun);
+    const AU_POOL = {
+      au: genderNouns.filter((n) => n.g === "m" && !isVowelStart(n.noun) && (isPerson(n) || isThing(n))),
+      "à la": genderNouns.filter((n) => n.g === "v" && !isVowelStart(n.noun) && (isPerson(n) || isThing(n))),
+      "à l'": allNouns.filter((n) => isVowelStart(n.noun) && (isPerson(n) || isThing(n))),
+      aux: allNouns.filter(isPerson),
+    };
+    function genAu(unit, level, c) {
+      const ans = c ? c.ans : pick(["au", "à la", "à l'", "aux"]);
+      const n = pick(AU_POOL[ans]);
+      const pl = ans === "aux";
       const word = pl ? plural(n.noun) : n.noun;
-      const start = usePeople ? pick(["Je téléphone", "Nous téléphonons", "La prof donne un livre", "Il dit bonjour"]) :
+      const start = isPerson(n) ? pick(["Je téléphone", "Nous téléphonons", "La prof donne un livre", "Il dit bonjour"]) :
         /cinéma|école/.test(n.noun) ? pick(["Les élèves sont", "Nous sommes", "Je suis"]) :
         /radio|télé/.test(n.noun) ? pick(["J'écoute des chansons", "Je regarde un film"]) : pick(["Timothy joue", "Les exercices sont", "Le texte est"]);
       return gq(unit, { instruction: "Vul in: au, à la, à l' of aux", prompt: `${start} ___ ${word}.`, accepted: [ans, ans.replace("'", "")], answerShown: `${start} ${ans}${ans.endsWith("'") ? "" : " "}${word}.`, mode: mcOrText(level, true), options: ["au", "à la", "à l'", "aux"] });
     }
 
-    function genAimerInf(unit, level) {
-      const v = pick(ER_VERBS.filter((x) => x !== "aimer"));
+    const INF_VERBS = ER_VERBS.filter((x) => x !== "aimer");
+    function genAimerInf(unit, level, c) {
+      const v = c ? c.v : pick(INF_VERBS);
       const s = pick([{ s: "J'aime", p: "je" }, { s: "Tu aimes", p: "tu" }, { s: "Nous aimons", p: "nous" }, { s: "Elles aiment", p: "elles" }]);
       const obj = { chanter: "des chansons", danser: "avec un ami", écouter: "la radio", jouer: "au basket", regarder: "la télé", téléphoner: "à une amie" }[v];
       const opts = uniq([v, erForm(v, "je"), erForm(v, "nous"), erForm(v, "vous")]);
       return gq(unit, { instruction: `Vul de juiste vorm van ${v} in`, prompt: `${s.s} ___ ${obj}.`, accepted: [v], answerShown: `${s.s} ${v} ${obj}.`, mode: mcOrText(level, true), options: shuffle(opts), verbForm: true });
     }
 
-    function conjQuestion(unit, level, v) {
+    function conjQuestion(unit, level, v, forcedP) {
       let p, subj;
-      if (Math.random() < 0.6) { p = pick(PRONS); subj = null; } else { const s = pick(subjectPool()); p = s.p; subj = s.s; }
+      if (forcedP) { p = forcedP; subj = null; }
+      else if (Math.random() < 0.6) { p = pick(PRONS); subj = null; } else { const s = pick(subjectPool()); p = s.p; subj = s.s; }
       const form = erForm(v, p);
       const all = uniq(PRONS.map((x) => erForm(v, x)));
       if (subj) {
@@ -335,8 +354,29 @@
       const full = withPron(p, form);
       return gq(unit, { instruction: `Vervoeg ${v} (schrijf het voornaamwoord mee)`, prompt: `${p} … (${v})`, accepted: [full, form], answerShown: full, mode: mcOrText(level), options: shuffle(all.map((f) => withPron(p, f))), verbForm: true });
     }
-    function genAimer(unit, level) { return conjQuestion(unit, level, "aimer"); }
-    function genER(unit, level) { return conjQuestion(unit, level, pick(ER_VERBS.filter((v) => v !== "aimer"))); }
+    function genAimer(unit, level, c) { return conjQuestion(unit, level, "aimer", c && c.p); }
+    function genER(unit, level, c) { return c ? conjQuestion(unit, level, c.v, c.p) : conjQuestion(unit, level, pick(INF_VERBS)); }
+
+    // ---------- volledige dekking per grammatica-onderdeel (eindtoets) ----------
+    const COVERAGE = {
+      "g-pronoms": () => [...PRONS.map((pron) => ({ pron })), ...subjectPool().map((_, subj) => ({ subj }))],
+      "g-etre": () => PRONS.map((p) => ({ p })),
+      "g-de": () => [...DE_CITIES.filter(isVowelStart).slice(0, 3), ...DE_CITIES.filter((x) => !isVowelStart(x)).slice(0, 3)].map((city) => ({ city })),
+      "g-rekenen": () => [{}, {}, {}, {}],
+      "g-vous": () => VOUS_T.map((_, i) => ({ i })),
+      "g-indef": () => [...genderNouns.map((n) => ({ n })), ...shuffle(allNouns).slice(0, 3).map((n) => ({ n, pl: true }))],
+      "g-pluriel": () => {
+        const irr = PLURAL_NOUNS.filter((n) => PLURAL_IRR[n.noun]);
+        return [...irr, ...shuffle(PLURAL_NOUNS.filter((n) => !PLURAL_IRR[n.noun])).slice(0, 4)].map((n) => ({ n }));
+      },
+      "g-cest": () => ["qui", "quoi", "cest", "cest", "cesont", "cesont"].map((t) => ({ t })),
+      "g-aimerinf": () => INF_VERBS.map((v) => ({ v })),
+      "g-def": () => ["le", "le", "la", "la", "l'", "l'", "les", "les"].map((art) => ({ art })),
+      "g-au": () => ["au", "au", "à la", "à la", "à l'", "à l'", "aux", "aux"].map((ans) => ({ ans })),
+      "g-aimer": () => PRONS.map((p) => ({ p })),
+      "g-er": () => INF_VERBS.flatMap((v, i) => [{ v, p: PRONS[(2 * i) % 8] }, { v, p: PRONS[(2 * i + 1) % 8] }]),
+    };
+    units.forEach((u) => { if (u.kind === "gram") u.cases = COVERAGE[u.id]; });
 
     // ---------- toets samenstellen ----------
     // "Alle": elk woord/elke zin precies één keer + een vast aantal vragen per grammatica-onderdeel
@@ -344,7 +384,7 @@
     function countAll(settings) {
       const sel = units.filter((u) => settings.units.includes(u.id));
       const mult = settings.dir === "both" && settings.bothDirs ? 2 : 1;
-      return sel.reduce((s, u) => s + (u.kind === "vocab" ? u.items.length * mult : GRAM_PER_UNIT_ALL), 0);
+      return sel.reduce((s, u) => s + (u.kind === "vocab" ? u.items.length * mult : u.cases ? u.cases().length : GRAM_PER_UNIT_ALL), 0);
     }
     function makeAllQuiz(settings, sel) {
       const qs = [];
@@ -355,6 +395,16 @@
             for (const dir of dirs) qs.push({ ...vocabQuestion(u, item, dir, settings.level), unitLabel: u.label, mission: u.mission });
           }
         } else {
+          if (u.cases) {
+            const seen = new Set();
+            for (const c of u.cases()) {
+              let q, tries = 0;
+              do { q = u.gen(u, settings.level, c); } while (seen.has(q.key) && ++tries < 15);
+              seen.add(q.key);
+              qs.push({ ...q, unitLabel: u.label, mission: u.mission, coverage: true });
+            }
+            continue;
+          }
           const seen = new Set();
           for (let i = 0, guard = 0; i < GRAM_PER_UNIT_ALL && guard < 200; guard++) {
             const q = u.gen(u, settings.level);
